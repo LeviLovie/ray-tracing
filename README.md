@@ -1,4 +1,4 @@
-# ray-tracing
+# Ray Tracing
 My realisation of ray tracing in rust
 
 ## Running
