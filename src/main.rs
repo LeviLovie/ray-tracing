@@ -7,8 +7,9 @@
 
 mod window;
 mod config;
+mod engine;
 
-const VERSION: &str = "0.0.2";
+const VERSION: &str = "0.0.3";
 
 fn main() {
     println!("Booting v{}", VERSION);
@@ -16,7 +17,7 @@ fn main() {
     let mut sphere = config::Object::new(config::TYPE_SPHERE, config::Transform::new(0.0, 0.0, 1.0));
     sphere.info();
 
-    let mut window = window::WindowClass::new("Ray Casting");
+    let mut window = window::WindowClass::new("Ray Tracing");
     window.info();
     window.init_drawing();
 }
