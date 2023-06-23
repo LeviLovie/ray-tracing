@@ -37,22 +37,18 @@ impl Color {
 }
 
 pub struct WindowClass {
-    pub sizeY: usize,
-    pub sizeX: usize,
     pub title: String,
     pub VRAM: [Color; WINSIZEY*WINSIZEX],
 }
 impl WindowClass {
-    pub fn new(sizex: usize, sizey: usize, title: &str) -> Self {
+    pub fn new(title: &str) -> Self {
         WindowClass {
-            sizeX: sizex,
-            sizeY: sizey,
             title: title.to_string(),
             VRAM: [Color::new(0.0, 0.0, 0.0); WINSIZEY*WINSIZEX],
         }
     }
     pub fn info(&self) {
-        println!("`{}` - {}:{}", self.title, self.sizeX, self.sizeY);
+        println!("Window: `{}` - {}:{} with upscale {}", self.title, WINSIZEY, WINSIZEX, PIXELUPSCALE);
     }
 
     pub fn init_drawing(&self) {
@@ -70,12 +66,8 @@ impl WindowClass {
         let mut vram = self.VRAM;
 
         // Imitation of the ray-tracing fn
-        //let mut color;
         for i in 0..WINSIZEY {
             for j in 0..WINSIZEX {
-                //color = Color::new(0.0, ((100.0 * j as f64) / WINSIZEX as f64) / 100.0, 0.0);
-                //color = Color::new(0.0, 0.5, 0.0);
-                //println!("{}:{} - {} - {}", j, i, x_y_in_vram(j as usize, i as usize), color.g);
                 vram[x_y_in_vram(j as usize, i as usize)] = Color::new(((100.0 * i as f64) / WINSIZEY as f64) / 100.0, ((100.0 * j as f64) / WINSIZEX as f64) / 100.0, 0.0);
             }
         }
@@ -95,36 +87,6 @@ impl WindowClass {
             Inhibit(false)
         });
 
-        /*drawing_area.connect_draw(move |_, cr| {
-            let mut vram = vram_mut.lock().unwrap();
-            let mut err;
-
-            for i in 0..WINSIZEY*WINSIZEX {
-                let x = i % WINSIZEX;
-                let y = i / WINSIZEY;
-                let color = vram[];
-                cr.set_source_rgb(color.r, color.g, color.b);
-                cr.rectangle(
-                    (x * pixel_size) as f64,
-                    (y * pixel_size) as f64,
-                    pixel_size as f64,
-                    pixel_size as f64,
-                );
-                err = cr.fill();
-                if err != Ok(()) {
-                    ERR::err_catch(ERR::Err::new(
-                        "Failed to draw pixel, GTK error; {}",
-                        ERR::LEVEL_ERR_LOG,
-                    ));
-                }
-            }
-
-            drop(vram);
-
-            Inhibit(false)
-        });
-        */
-
         window.connect_event(|w, _| {
             w.queue_draw();
             Inhibit(false)
@@ -132,15 +94,8 @@ impl WindowClass {
         window.present();
         window.set_keep_above(true);
 
-        GLOBAL.with(|global|{
-            *global.borrow_mut() = Some(window);
-        });
-
-        glib::timeout_add(Duration::from_millis(100), move || {
-            check_update_display();
-            glib::Continue(true)
-        });
-
+        GLOBAL.with(|global|{*global.borrow_mut() = Some(window);});
+        glib::timeout_add(Duration::from_millis(100), move || {check_update_display();glib::Continue(true)});
         gtk::main();
     }
 }
