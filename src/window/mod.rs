@@ -39,13 +39,11 @@ impl Color {
 
 pub struct WindowClass {
     pub title: String,
-    pub VRAM: [Color; WINSIZEY*WINSIZEX],
 }
 impl WindowClass {
     pub fn new(title: &str) -> Self {
         WindowClass {
             title: title.to_string(),
-            VRAM: [Color::new(0.0, 0.0, 0.0); WINSIZEY*WINSIZEX],
         }
     }
     pub fn info(&self) {
@@ -64,16 +62,17 @@ impl WindowClass {
         window.show();
         window.add(&drawing_area);
         window.show_all();
-        let mut vram = self.VRAM;
 
-        engine::test(); 
+        let mut vram = vec![Color::new(0.0, 0.0, 0.0); WINSIZEY*WINSIZEX];
+        
+        vram = engine::ProcessScreen(WINSIZEY, WINSIZEX);
 
         // Imitation of the ray-tracing fn
-        for i in 0..WINSIZEY {
-            for j in 0..WINSIZEX {
-                vram[x_y_in_vram(j as usize, i as usize)] = Color::new(((100.0 * i as f64) / WINSIZEY as f64) / 100.0, ((100.0 * j as f64) / WINSIZEX as f64) / 100.0, 0.0);
-            }
-        }
+        //for i in 0..WINSIZEY {
+        //    for j in 0..WINSIZEX {
+        //        vram[x_y_in_vram(j as usize, i as usize)] = Color::new(((100.0 * i as f64) / WINSIZEY as f64) / 100.0, ((100.0 * j as f64) / WINSIZEX as f64) / 100.0, 0.0);
+        //    }
+        //}
 
         drawing_area.connect_draw(move |_, cr| {
             let mut err;
