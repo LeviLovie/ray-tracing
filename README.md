@@ -21,4 +21,16 @@ Here I made system to store objects for render.
 ![](https://github.com/LeviiLovie/ray-tracing/blob/main/versions/v0.0.3.png)
 [v0.0.3](https://github.com/LeviiLovie/ray-tracing/releases/tag/v0.0.3) Renderer image.
 
-Here I made processing pixels like usual shader. (Example of random color for every pixel)
+Here I made processing pixels like usual shader. Example of random color for every pixel:
+```
+use crate::window;
+use rand::Rng;
+
+pub fn ProcessPixel(SizeY: usize, SizeX: usize, PosY: usize, PosX: usize) -> window::Color {
+    return window::Color::new(
+        rand::thread_rng().gen_range(0..100) as f64 / 100.0,
+        rand::thread_rng().gen_range(0..100) as f64 / 100.0,
+        rand::thread_rng().gen_range(0..100) as f64 / 100.0,
+    ) 
+}
+```
