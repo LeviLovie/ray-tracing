@@ -1,3 +1,5 @@
+use crate::engine;
+
 use gtk::prelude::*;
 use gtk::{DrawingArea, Window, WindowType};
 use std::cell::RefCell;
@@ -22,7 +24,6 @@ fn check_update_display(){
 fn x_y_in_vram(x: usize, y: usize) -> usize {
     return y * WINSIZEX + x
 }
-
 
 #[derive(Copy, Clone)]
 pub struct Color {
@@ -64,6 +65,8 @@ impl WindowClass {
         window.add(&drawing_area);
         window.show_all();
         let mut vram = self.VRAM;
+
+        engine::test(); 
 
         // Imitation of the ray-tracing fn
         for i in 0..WINSIZEY {
