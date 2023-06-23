@@ -3,7 +3,9 @@ My realisation of ray tracing in rust
 
 ## Running
 I'm building project only for mac os, and to run my app, you need to fix it (idk why):
-```xattr -d com.apple.quarantine ray-tracing```.
+```
+xattr -d com.apple.quarantine ray-tracing
+```
 If you using other OS, you need to build it by yourself.
 
 ## v0.0.1
