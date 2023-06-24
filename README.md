@@ -36,3 +36,9 @@ pub fn ProcessPixel(SizeY: usize, SizeX: usize, PosY: usize, PosX: usize) -> win
     ) 
 }
 ```
+
+## v0.0.4
+![](https://github.com/LeviiLovie/ray-tracing/blob/main/versions/v0.0.4.png)
+[v0.0.4](https://github.com/LeviiLovie/ray-tracing/releases/tag/v0.0.4) Renderer image.
+
+I made simple renderer. But I'm declaring every object, when rendering pixel. I will optimise it later.
