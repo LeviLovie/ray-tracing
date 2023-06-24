@@ -6,9 +6,9 @@ use std::cell::RefCell;
 use std::sync::{Arc, Mutex};
 use std::time::Duration;
 
-const WINSIZEX: usize = 320;
-const WINSIZEY: usize = 180;
-const PIXELUPSCALE: usize = 5;
+const WINSIZEX: usize = 1000;
+const WINSIZEY: usize = 1000;
+const PIXELUPSCALE: usize = 1;
 
 thread_local!(
     static GLOBAL: RefCell<Option<Window>> = RefCell::new(None);
