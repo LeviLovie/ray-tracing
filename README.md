@@ -42,3 +42,14 @@ pub fn ProcessPixel(SizeY: usize, SizeX: usize, PosY: usize, PosX: usize) -> win
 [v0.0.4](https://github.com/LeviiLovie/ray-tracing/releases/tag/v0.0.4) Renderer image.
 
 I made simple renderer. But I'm declaring every object, when rendering pixel. I will optimise it later.
+
+## v0.0.5
+[v0.0.5](https://github.com/LeviiLovie/ray-tracing/releases/tag/v0.0.5)
+
+Performace analyser:
+```
+Booting v0.0.5
+Window: `Ray Tracing` - 1000:1000 with upscale 1
+Processing screen (it can take a few seconds)
+Process Screen took 104.253406ms
+```
