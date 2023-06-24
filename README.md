@@ -53,3 +53,14 @@ Window: `Ray Tracing` - 1000:1000 with upscale 1
 Processing screen (it can take a few seconds)
 Process Screen took 104.253406ms
 ```
+
+## v0.0.6
+[v0.0.6](https://github.com/LeviiLovie/ray-tracing/releases/tag/v0.0.6)
+
+Optimised storing objects (move from render pixel function to render screen function):
+```
+Booting v0.0.6
+Window: `Ray Tracing` - 1000:1000 with upscale 1
+Processing screen (it can take a few seconds)
+Process Screen took 106.353386ms
+```
