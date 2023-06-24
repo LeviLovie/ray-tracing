@@ -8,7 +8,7 @@
 mod window;
 mod engine;
 
-const VERSION: &str = "0.0.4";
+const VERSION: &str = "0.0.5";
 
 fn main() {
     println!("Booting v{}", VERSION);
